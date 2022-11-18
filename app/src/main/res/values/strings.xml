@@ -37,4 +37,13 @@
     <string name="birth_date">Date de naissance</string>
     <string name="place_of_birth">Lieu de naissance</string>
     <string name="healed_people">Vos dons ont soignés X personnes \nMerci !</string>
+    <string name="blood_donation">Don de sang</string>
+    <string name="plasma_donation">Don de plasma</string>
+    <string name="plaquette_donation">Don de plaquette</string>
+    <string name="next_donation">Prochain don :\ndate test</string>
+    <string name="make_appointment">Prendre rendez-vous</string>
+    <string name="blood">Sang</string>
+    <string name="info_button">Info</string>
+    <string name="plasma">Plasma</string>
+    <string name="plaquette">Plaquette</string>
 </resources>

@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/donationNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -17,53 +17,259 @@
         android:gravity="center"
         android:text="@string/healed_people"
         android:textColor="@color/main_color"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodSquare"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/bloodSquare"
         android:layout_width="355dp"
         android:layout_height="146dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/text_background"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="96dp" />
+        app:layout_constraintBottom_toTopOf="@+id/plasmaSquare"
+        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
+        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/plasmaSquare"
         android:layout_width="355dp"
         android:layout_height="146dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/text_background"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="274dp" />
+        app:layout_constraintBottom_toTopOf="@+id/plaquetteSquare"
+        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
+        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
+
+    <View
+        android:id="@+id/verticalLineBlood"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:background="#A3A3A3"
+        app:layout_constraintBottom_toBottomOf="@+id/bloodSquare"
+        app:layout_constraintStart_toEndOf="@+id/bloodImageView"
+        app:layout_constraintTop_toTopOf="@+id/bloodSquare"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/verticalLinePlasma"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:background="#A3A3A3"
+        app:layout_constraintBottom_toBottomOf="@+id/plasmaSquare"
+        app:layout_constraintStart_toEndOf="@+id/plasmaImageView"
+        app:layout_constraintTop_toTopOf="@+id/plasmaSquare"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/plaquetteSquare"
         android:layout_width="355dp"
         android:layout_height="146dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/text_background"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="455dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
+        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
+
+
+    <View
+        android:id="@+id/verticalLinePlaquette"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:background="#A3A3A3"
+        app:layout_constraintBottom_toBottomOf="@+id/plaquetteSquare"
+        app:layout_constraintStart_toEndOf="@+id/PlaquetteImageView"
+        app:layout_constraintTop_toTopOf="@+id/plaquetteSquare"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/infosButonBlood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/info_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/bloodSquare"
+        app:layout_constraintTop_toTopOf="@+id/bloodSquare"
         app:srcCompat="@drawable/ic_baseline_info_48"
-        tools:layout_editor_absoluteX="316dp"
-        tools:layout_editor_absoluteY="94dp" />
+        tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPlasma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/info_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/plasmaSquare"
+        app:layout_constraintTop_toTopOf="@+id/plasmaSquare"
+        app:srcCompat="@drawable/ic_baseline_info_48"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPlaquette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/info_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/plaquetteSquare"
+        app:layout_constraintTop_toTopOf="@+id/plaquetteSquare"
+        app:srcCompat="@drawable/ic_baseline_info_48"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/bloodImageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:contentDescription="@string/blood"
+        app:layout_constraintBottom_toBottomOf="@+id/bloodSquare"
+        app:layout_constraintStart_toStartOf="@+id/bloodSquare"
+        app:layout_constraintTop_toTopOf="@+id/bloodSquare"
+        app:layout_constraintVertical_bias="0.513"
+        app:srcCompat="@drawable/blood_icon" />
+
+    <TextView
+        android:id="@+id/bloodTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blood_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/bloodImageView"
+        app:layout_constraintStart_toStartOf="@+id/bloodImageView"
+        app:layout_constraintTop_toBottomOf="@+id/bloodImageView" />
+
+    <ImageView
+        android:id="@+id/plasmaImageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:contentDescription="@string/plasma"
+        app:layout_constraintBottom_toBottomOf="@+id/plasmaSquare"
+        app:layout_constraintStart_toStartOf="@+id/plasmaSquare"
+        app:layout_constraintTop_toTopOf="@+id/plasmaSquare"
+        app:layout_constraintVertical_bias="0.513"
+        app:srcCompat="@drawable/plasma_icon" />
+
+    <TextView
+        android:id="@+id/plasmaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plasma_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/plasmaImageView"
+        app:layout_constraintStart_toStartOf="@+id/plasmaImageView"
+        app:layout_constraintTop_toBottomOf="@+id/plasmaImageView" />
+
+    <ImageView
+        android:id="@+id/PlaquetteImageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="48dp"
+        android:contentDescription="@string/plaquette"
+        app:layout_constraintBottom_toBottomOf="@+id/plaquetteSquare"
+        app:layout_constraintStart_toStartOf="@+id/plaquetteSquare"
+        app:layout_constraintTop_toTopOf="@+id/plaquetteSquare"
+        app:layout_constraintVertical_bias="0.513"
+        app:srcCompat="@drawable/plaquette_icon" />
+
+    <TextView
+        android:id="@+id/plaquetteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plaquette_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/PlaquetteImageView"
+        app:layout_constraintStart_toStartOf="@+id/PlaquetteImageView"
+        app:layout_constraintTop_toBottomOf="@+id/PlaquetteImageView" />
+
+    <TextView
+        android:id="@+id/bloodNextDonation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/next_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/bloodSquare"
+        app:layout_constraintStart_toEndOf="@+id/verticalLineBlood"
+        app:layout_constraintTop_toTopOf="@+id/bloodSquare" />
+
+    <TextView
+        android:id="@+id/plasmaNextDonation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/next_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/plasmaSquare"
+        app:layout_constraintStart_toEndOf="@+id/verticalLinePlasma"
+        app:layout_constraintTop_toTopOf="@+id/plasmaSquare" />
+
+    <TextView
+        android:id="@+id/plaquetteNextDonation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/next_donation"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/plaquetteSquare"
+        app:layout_constraintStart_toEndOf="@+id/verticalLinePlaquette"
+        app:layout_constraintTop_toTopOf="@+id/plaquetteSquare" />
+
+    <Button
+        android:id="@+id/bloodAppointmentButton"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="@string/make_appointment"
+        app:layout_constraintEnd_toEndOf="@+id/bloodNextDonation"
+        app:layout_constraintStart_toStartOf="@+id/bloodNextDonation"
+        app:layout_constraintTop_toBottomOf="@+id/bloodNextDonation"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/plasmaAppointmentButton"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="@string/make_appointment"
+        app:layout_constraintEnd_toEndOf="@+id/plasmaNextDonation"
+        app:layout_constraintStart_toStartOf="@+id/plasmaNextDonation"
+        app:layout_constraintTop_toBottomOf="@+id/plasmaNextDonation"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/plaquetteAppointmentButton"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="@string/make_appointment"
+        app:layout_constraintEnd_toEndOf="@+id/plaquetteNextDonation"
+        app:layout_constraintStart_toStartOf="@+id/plaquetteNextDonation"
+        app:layout_constraintTop_toBottomOf="@+id/plaquetteNextDonation"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

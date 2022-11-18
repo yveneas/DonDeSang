@@ -15,10 +15,10 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_connection);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new MenuFragment());
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new MenuFragment());
         fragmentTransaction.commit();
     }
 }

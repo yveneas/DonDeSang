@@ -46,9 +46,11 @@ public class LocationFragment extends Fragment {
         binding.button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserActivity.class);
+                startActivity(intent);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new MenuFragment());
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new MenuFragment());
                 fragmentTransaction.commit();
             }
         });

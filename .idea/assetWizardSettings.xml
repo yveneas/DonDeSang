@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="131746" />
-                            <entry key="outputName" value="ic_baseline_info_48" />
-                            <entry key="sourceFile" value="C:\Users\jujup\Downloads\Sans_titre_-_1.svg" />
+                            <entry key="outputName" value="plasma" />
+                            <entry key="sourceFile" value="C:\Users\jujup\Downloads\plasma.svg" />
                           </map>
                         </option>
                       </PersistentState>
