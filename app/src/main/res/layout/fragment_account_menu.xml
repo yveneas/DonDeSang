@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_account_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.account.menu.MenuFragment">
+
+    <TextView
+        android:id="@+id/textSubTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:text="@string/username"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/accountInfosButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:text="@string/title_hello"
+        android:textColor="@color/main_color"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/textSubTitle3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/accountInfosButton"
+        android:layout_width="330dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/button_background_account"
+        android:drawableStart="@drawable/user_informations"
+        android:text="@string/informations"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/accountDonationsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/accountDonationsButton"
+        android:layout_width="330dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_background_account"
+        android:text="@string/blood_donation_informations"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/accountBadgesButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/accountBadgesButton"
+        android:layout_width="330dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/button_background_account"
+        android:text="@string/badges_account"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

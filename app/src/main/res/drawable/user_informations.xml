@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- This is the background color of the shape -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="48dp" android:height="48dp"/>
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_user_informations" android:bottom="10dp" android:top="5dp" android:left="10dp" android:right="10dp"/>
+</layer-list>
