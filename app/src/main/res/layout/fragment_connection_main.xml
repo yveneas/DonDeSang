@@ -12,47 +12,46 @@
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/title_profile"
         android:textColor="@color/main_color"
         android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textSubTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/connexion"
         android:textColor="@color/main_color"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintBottom_toTopOf="@+id/verticalLineBlood"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/verticalLineBlood"
         android:layout_width="320dp"
         android:layout_height="2dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="90dp"
         android:background="#D9D9D9"
+        app:layout_constraintBottom_toTopOf="@+id/textAlreadyAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSubTitle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textFirstConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:text="@string/title_first_connection"
         android:textColor="@color/main_color"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/signUpButton"
-        app:layout_constraintTop_toBottomOf="@+id/signInButton" />
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
+        app:layout_constraintStart_toStartOf="@+id/signUpButton" />
 
     <Button
         android:id="@+id/signInButton"
@@ -60,12 +59,13 @@
         android:layout_height="48dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/button_background"
         android:text="@string/sign_in"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textFirstConnection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlreadyAccount"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -74,23 +74,23 @@
         android:layout_height="48dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="164dp"
         android:background="@drawable/button_background"
         android:text="@string/sign_up"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFirstConnection"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textAlreadyAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:text="@string/already_account"
         android:textColor="@color/main_color"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/signInButton"
-        app:layout_constraintTop_toBottomOf="@+id/verticalLineBlood" />
+        app:layout_constraintBottom_toTopOf="@+id/signInButton"
+        app:layout_constraintStart_toStartOf="@+id/signInButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

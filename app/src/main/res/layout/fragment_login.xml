@@ -121,7 +121,7 @@
         android:id="@+id/connectionButton"
         android:layout_width="268dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/button_background"
         android:text="@string/connexion"
         android:textSize="20sp"
