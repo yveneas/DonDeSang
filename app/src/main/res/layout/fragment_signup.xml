@@ -64,12 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:autofillHints=""
             android:background="@drawable/textfield_background"
             android:drawableStart="@drawable/identifiant_image"
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/identifiant"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/textPassword"
@@ -89,7 +91,9 @@
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/title_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="DuplicateSpeakableTextCheck"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/textPassword2"
@@ -109,7 +113,8 @@
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/title_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:autofillHints="" />
     </LinearLayout>
 
     <Button

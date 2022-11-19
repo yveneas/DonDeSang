@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/blood_icon"
+        android:bottom="32dp" android:right="32dp" android:left="2dp"/>
+    <item android:drawable="@drawable/plasma_icon"
+        android:top="32dp" android:right="32dp" android:left="2dp"/>
+    <item android:drawable="@drawable/plaquette_icon"
+        android:top="16dp" android:bottom="16dp" android:left="30dp" android:right="4dp"/>
+
+</layer-list>

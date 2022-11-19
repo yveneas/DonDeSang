@@ -72,7 +72,8 @@
             android:ems="10"
             android:hint="@string/identifiant"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/textForgotId"
@@ -103,7 +104,8 @@
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/title_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/textForgotPassword"
@@ -125,6 +127,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

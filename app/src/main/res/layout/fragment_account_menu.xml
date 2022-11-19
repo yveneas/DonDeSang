@@ -53,6 +53,7 @@
         android:layout_height="100dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/button_background_account"
+        android:drawableStart="@drawable/all_drips"
         android:text="@string/blood_donation_informations"
         android:textColor="@color/main_color"
         android:textSize="20sp"
@@ -66,10 +67,13 @@
         android:layout_height="100dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/button_background_account"
+        android:drawableStart="@drawable/medal"
         android:text="@string/badges_account"
         android:textColor="@color/main_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
