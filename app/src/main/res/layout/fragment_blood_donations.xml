@@ -8,19 +8,17 @@
 
     <TextView
         android:id="@+id/donationNumber"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/text_background"
         android:gravity="center"
         android:text="@string/healed_people"
         android:textColor="@color/main_color"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bloodSquare"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/donationBackButton"
+        app:layout_constraintEnd_toEndOf="@+id/bloodSquare"
+        app:layout_constraintStart_toEndOf="@+id/donationBackButton"
+        app:layout_constraintTop_toTopOf="@+id/donationBackButton" />
 
     <TextView
         android:id="@+id/bloodSquare"
@@ -29,8 +27,8 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/text_background"
         app:layout_constraintBottom_toTopOf="@+id/plasmaSquare"
-        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
-        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/plasmaSquare"
@@ -39,8 +37,8 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/text_background"
         app:layout_constraintBottom_toTopOf="@+id/plaquetteSquare"
-        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
-        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/bloodSquare"
+        app:layout_constraintStart_toStartOf="@+id/bloodSquare" />
 
     <View
         android:id="@+id/verticalLineBlood"
@@ -71,8 +69,8 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/text_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/donationNumber"
-        app:layout_constraintStart_toStartOf="@+id/donationNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/plasmaSquare"
+        app:layout_constraintStart_toStartOf="@+id/plasmaSquare" />
 
 
     <View
@@ -272,5 +270,15 @@
         app:layout_constraintStart_toStartOf="@+id/plaquetteNextDonation"
         app:layout_constraintTop_toBottomOf="@+id/plaquetteNextDonation"
         tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <ImageButton
+        android:id="@+id/donationBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodSquare"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_baseline_arrow_circle_left_48" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import com.example.dondesang.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private boolean isUserConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,4 +44,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public boolean isUserConnected() {
+        return isUserConnected;
+    }
+
+    public void setUserConnected(boolean userConnected) {
+        isUserConnected = userConnected;
+    }
 }

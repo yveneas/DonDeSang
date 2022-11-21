@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentSignupBinding;
 import com.example.dondesang.ui.account.menu.MenuFragment;
+import com.example.dondesang.ui.connection.ConnectionFragment;
 
 public class SignUpFragment extends Fragment {
 
@@ -42,6 +43,16 @@ public class SignUpFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new MenuFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
+        binding.signupBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new ConnectionFragment());
                 fragmentTransaction.commit();
             }
         });

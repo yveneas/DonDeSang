@@ -121,13 +121,25 @@
         android:id="@+id/connectionButton"
         android:layout_width="268dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
         android:text="@string/connexion"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/loginBackButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/back_button_background"
+        android:text="@string/back"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/connectionButton"
+        app:layout_constraintStart_toStartOf="@+id/connectionButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
