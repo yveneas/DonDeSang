@@ -49,4 +49,8 @@
     <string name="example">Exemple</string>
     <string name="modify">Modifier</string>
     <string name="back">Retour</string>
+    <string name="search_location">Chercher un lieu</string>
+    <string name="take_appointment">Prise de rendez-vous</string>
+    <string name="test">test</string>
+    <string name="selection">Selectionner</string>
 </resources>

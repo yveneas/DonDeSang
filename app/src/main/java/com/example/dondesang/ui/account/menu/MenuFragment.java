@@ -14,7 +14,6 @@ import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentAccountMenuBinding;
 import com.example.dondesang.ui.account.donations.BloodDonationsFragment;
 import com.example.dondesang.ui.account.informations.AccountInformationsFragment;
-import com.example.dondesang.ui.login.LoginFragment;
 
 public class MenuFragment extends Fragment {
     private FragmentAccountMenuBinding binding;
@@ -39,7 +38,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new AccountInformationsFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new AccountInformationsFragment());
                 fragmentTransaction.commit();
             }
         });
@@ -49,7 +48,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new BloodDonationsFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new BloodDonationsFragment());
                 fragmentTransaction.commit();
             }
         });

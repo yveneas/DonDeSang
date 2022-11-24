@@ -37,7 +37,7 @@ public class AccountInformationsFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new MenuFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new MenuFragment());
                 fragmentTransaction.commit();
             }
         });

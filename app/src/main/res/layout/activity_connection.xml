@@ -55,7 +55,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment_activity_connection"
+        android:id="@+id/fragment_activity_connection"
         android:name="com.example.dondesang.ui.connection.ConnectionFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

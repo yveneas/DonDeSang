@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyArfVhHSd7aGoU4INZ6BDuiMEK4-PX70Oc" />
 
         <activity
             android:name=".MainActivity"
@@ -32,6 +32,7 @@
         </activity>
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".UserActivity" />
+        <activity android:name=".AppointmentActivity" />
     </application>
 
 </manifest>

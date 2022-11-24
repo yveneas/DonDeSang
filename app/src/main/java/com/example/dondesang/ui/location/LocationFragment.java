@@ -35,20 +35,14 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LocationViewModel locationViewModel =
-                new ViewModelProvider(this).get(LocationViewModel.class);
 
         binding = FragmentLocationBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textLocation;
-        locationViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         listener();
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        return root;
+        return binding.getRoot();
     }
 
     @Override

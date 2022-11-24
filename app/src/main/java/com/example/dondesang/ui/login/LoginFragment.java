@@ -1,6 +1,5 @@
 package com.example.dondesang.ui.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.R;
-import com.example.dondesang.UserActivity;
 import com.example.dondesang.databinding.FragmentLoginBinding;
-import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
 
 public class LoginFragment extends Fragment {
@@ -53,7 +50,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new ConnectionFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new ConnectionFragment());
                 fragmentTransaction.commit();
             }
         });

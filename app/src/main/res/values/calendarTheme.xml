@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="CalenderViewCustom">
+        <item name="android:textColorPrimary">@color/main_color</item>
+        <item name="android:textColorSecondary">@color/main_color</item>
+    </style>
+</resources>

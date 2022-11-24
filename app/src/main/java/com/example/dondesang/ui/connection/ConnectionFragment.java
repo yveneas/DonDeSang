@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,7 +44,7 @@ public class ConnectionFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new LoginFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new LoginFragment());
                 fragmentTransaction.commit();
             }
         });
@@ -55,7 +54,7 @@ public class ConnectionFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_connection, new SignUpFragment());
+                fragmentTransaction.replace(R.id.fragment_activity_connection, new SignUpFragment());
                 fragmentTransaction.commit();
             }
         });
