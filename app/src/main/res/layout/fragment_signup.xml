@@ -136,7 +136,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="23dp"
         android:background="@drawable/back_button_background"
-        android:text="Button"
+        android:text="@string/back"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/inscriptionButton"

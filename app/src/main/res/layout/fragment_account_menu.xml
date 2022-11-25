@@ -9,7 +9,7 @@
     tools:context=".ui.account.menu.MenuFragment">
 
     <TextView
-        android:id="@+id/textSubTitle3"
+        android:id="@+id/nameTextSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="55dp"
@@ -28,7 +28,7 @@
         android:text="@string/title_hello"
         android:textColor="@color/main_color"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/textSubTitle3"
+        app:layout_constraintBottom_toTopOf="@+id/nameTextSubTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

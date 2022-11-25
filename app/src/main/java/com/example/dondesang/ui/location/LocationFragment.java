@@ -52,13 +52,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void listener() {
-        binding.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UserActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

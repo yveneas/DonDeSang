@@ -36,34 +36,19 @@
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/calendar_background"
         android:theme="@style/CalenderViewCustom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donationsSpinner" />
-
-    <Spinner
-        android:id="@+id/donationsSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/calendar_background"
-        android:contentDescription="@string/test"
-        android:minHeight="48dp"
-        android:theme="@style/CalenderViewCustom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <Button
         android:id="@+id/dateSelectionButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/button_background"
         android:text="@string/selection"
@@ -71,5 +56,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/calendar_background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalLine">
+
+        <ImageView
+            android:id="@+id/spinnerImage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image"
+            app:srcCompat="@drawable/blood" />
+
+        <Spinner
+            android:id="@+id/donationsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/test"
+            android:minHeight="48dp"
+            android:theme="@style/CalenderViewCustom" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/appointmentBackButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/back_button_background"
+        android:text="@string/back"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/dateSelectionButton"
+        app:layout_constraintStart_toStartOf="@+id/dateSelectionButton"
+        app:layout_constraintTop_toBottomOf="@+id/dateSelectionButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

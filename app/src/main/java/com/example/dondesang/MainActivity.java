@@ -12,11 +12,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.dondesang.databinding.ActivityMainBinding;
+import com.example.dondesang.ui.account.menu.MenuFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private boolean isUserConnected = false;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        mAuth = FirebaseAuth.getInstance();
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.navView, navController);
@@ -38,17 +40,9 @@ public class MainActivity extends AppCompatActivity {
         accountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConnectionActivity.class);
+                Intent intent = new Intent(MainActivity.this, UserActivity.class);
                 startActivity(intent);
             }
         });
-    }
-
-    public boolean isUserConnected() {
-        return isUserConnected;
-    }
-
-    public void setUserConnected(boolean userConnected) {
-        isUserConnected = userConnected;
     }
 }
