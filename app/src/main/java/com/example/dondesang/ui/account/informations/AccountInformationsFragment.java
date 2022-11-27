@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentAccountInformationsBinding;
-import com.example.dondesang.User;
+import com.example.dondesang.model.User;
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +51,7 @@ public class AccountInformationsFragment extends Fragment {
         Spinner spinner = (Spinner) binding.getRoot().findViewById(R.id.civilityText);
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
         userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {

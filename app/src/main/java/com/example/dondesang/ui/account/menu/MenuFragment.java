@@ -12,7 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.dondesang.R;
-import com.example.dondesang.User;
+import com.example.dondesang.UserActivity;
+import com.example.dondesang.model.User;
 import com.example.dondesang.databinding.FragmentAccountMenuBinding;
 import com.example.dondesang.ui.account.donations.BloodDonationsFragment;
 import com.example.dondesang.ui.account.informations.AccountInformationsFragment;
@@ -26,12 +27,18 @@ import com.google.firebase.database.ValueEventListener;
 public class MenuFragment extends Fragment {
     private FragmentAccountMenuBinding binding;
     private FirebaseAuth mAuth;
+    private User user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAccountMenuBinding.inflate(inflater, container, false);
         listeners();
+        UserActivity activity = (UserActivity) getActivity();
+        user = activity.getUser();
+        if(user != null) {
+            binding.nameTextSubTitle.setText(user.getName() + " " + user.getLastName());
+        }
         mAuth = FirebaseAuth.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
@@ -42,6 +49,8 @@ public class MenuFragment extends Fragment {
                 User user = snapshot.getValue(User.class);
                 if(user != null) {
                     binding.nameTextSubTitle.setText(user.getName() + " " + user.getLastName());
+                    UserActivity activity = (UserActivity) getActivity();
+                    activity.setUser(user);
                 }
             }
 

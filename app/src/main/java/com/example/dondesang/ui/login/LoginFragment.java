@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.R;
+import com.example.dondesang.UserActivity;
 import com.example.dondesang.databinding.FragmentLoginBinding;
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
