@@ -99,7 +99,7 @@ public class User {
         }
         Date date = null;
         try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(lastDonation.getDate().replace("-", "/"));
+            date = new SimpleDateFormat("yyyy/MM/dd").parse(lastDonation.getDate().replace("-", "/"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -121,7 +121,7 @@ public class User {
         }
         Date date = null;
         try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(lastDonation.getDate().replace("-", "/"));
+            date = new SimpleDateFormat("yyyy/MM/dd").parse(lastDonation.getDate().replace("-", "/"));
         } catch (ParseException e) {
             e.printStackTrace();
         }

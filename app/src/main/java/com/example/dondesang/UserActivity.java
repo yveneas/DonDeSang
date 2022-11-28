@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.dondesang.dao.UserDAO;
+import com.example.dondesang.model.Donation;
 import com.example.dondesang.model.User;
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
@@ -23,9 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class UserActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private User user;
+    private List<Donation> donations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class UserActivity extends AppCompatActivity {
                 }
             });
         }
+        UserDAO userDAO = new UserDAO();
+        donations = userDAO.getUserAllDonations();
         if(mAuth.getCurrentUser() == null) {
             setContentView(R.layout.activity_connection);
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -108,5 +115,13 @@ public class UserActivity extends AppCompatActivity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
 }

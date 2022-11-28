@@ -40,7 +40,7 @@
     <string name="blood_donation">Don de sang</string>
     <string name="plasma_donation">Don de plasma</string>
     <string name="plaquette_donation">Don de plaquette</string>
-    <string name="next_donation">Prochain don :\ndate test</string>
+    <string name="next_donation">Prochain don :\n</string>
     <string name="make_appointment">Prendre rendez-vous</string>
     <string name="blood">Sang</string>
     <string name="info_button">Info</string>
@@ -56,4 +56,6 @@
     <string name="image">Image</string>
     <string name="hour_choose">Choisissez une heure</string>
     <string name="type_donation">Don de ____</string>
+    <string name="city">Ville</string>
+    <string name="date">Date</string>
 </resources>

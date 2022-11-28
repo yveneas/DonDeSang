@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.dondesang.R;
+import com.example.dondesang.UserActivity;
 import com.example.dondesang.databinding.FragmentAccountInformationsBinding;
 import com.example.dondesang.model.User;
 import com.example.dondesang.ui.account.menu.MenuFragment;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class AccountInformationsFragment extends Fragment {
     private FragmentAccountInformationsBinding binding;
+    private User user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,32 +54,37 @@ public class AccountInformationsFragment extends Fragment {
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-        userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if(user != null) {
-                    binding.civilityText.setEnabled(false);
-                    binding.lastnameText.setEnabled(false);
-                    binding.nameText.setEnabled(false);
-                    binding.birthDateText.setEnabled(false);
-                    binding.birthPlaceText.setEnabled(false);
-                    binding.nameText.setText(user.getName());
-                    binding.lastnameText.setText(user.getLastName());
-                    binding.civilityText.setSelection(spinnerArray.indexOf(user.getCivility()));
-                    binding.birthDateText.setText(user.getBirthDate());
-                    binding.birthPlaceText.setText(user.getBirthPlace());
-                    binding.modifyButton.setText("Modifier");
-                }
-            }
+        UserActivity activity = (UserActivity) getActivity();
+        user = activity.getUser();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Erreur lors de la récupération des données", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(user == null) {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+            userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    user = snapshot.getValue(User.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), "Erreur lors de la récupération des données", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        binding.civilityText.setEnabled(false);
+        binding.lastnameText.setEnabled(false);
+        binding.nameText.setEnabled(false);
+        binding.birthDateText.setEnabled(false);
+        binding.birthPlaceText.setEnabled(false);
+        binding.nameText.setText(user.getName());
+        binding.lastnameText.setText(user.getLastName());
+        binding.civilityText.setSelection(spinnerArray.indexOf(user.getCivility()));
+        binding.birthDateText.setText(user.getBirthDate());
+        binding.birthPlaceText.setText(user.getBirthPlace());
+        binding.modifyButton.setText("Modifier");
+
         if(binding.nameText.getText().length() == 0) {
             binding.modifyButton.setText("Enregistrer");
             binding.civilityText.setEnabled(true);

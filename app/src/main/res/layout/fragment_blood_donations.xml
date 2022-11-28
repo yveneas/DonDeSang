@@ -100,7 +100,7 @@
         tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
     <ImageButton
-        android:id="@+id/imageButtonPlasma"
+        android:id="@+id/infosButtonPlasma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-5dp"
@@ -115,7 +115,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButtonPlaquette"
+        android:id="@+id/infosButtonPlaquette"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-5dp"

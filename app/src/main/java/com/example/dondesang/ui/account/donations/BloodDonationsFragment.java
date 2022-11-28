@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 
 public class BloodDonationsFragment extends Fragment {
+
     private FragmentBloodDonationsBinding binding;
     private User user;
 
@@ -138,6 +139,48 @@ public class BloodDonationsFragment extends Fragment {
         } else {
             binding.plaquetteAppointmentButton.setBackground(getResources().getDrawable(R.drawable.back_button_background));
         }
+
+        binding.infosButonBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "blood");
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                DonationsInfosFragment donationsInfosFragment = new DonationsInfosFragment();
+                donationsInfosFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_activity_connection, donationsInfosFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        binding.infosButtonPlasma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "plasma");
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                DonationsInfosFragment donationsInfosFragment = new DonationsInfosFragment();
+                donationsInfosFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_activity_connection, donationsInfosFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        binding.infosButtonPlaquette.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "plaquettes");
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        DonationsInfosFragment donationsInfosFragment = new DonationsInfosFragment();
+                        donationsInfosFragment.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fragment_activity_connection, donationsInfosFragment);
+                        fragmentTransaction.commit();
+                    }
+                });
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override

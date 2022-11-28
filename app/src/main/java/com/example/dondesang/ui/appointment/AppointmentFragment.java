@@ -58,7 +58,7 @@ public class AppointmentFragment extends Fragment {
         spinner.setAdapter(adapter);
         spinner.setSelection(1);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         if(selectedDate == null) {
             selectedDate = sdf.format(binding.calendarView.getDate());
             getAllTakenAppointments(selectedDate, getAllAppointments());
@@ -66,7 +66,7 @@ public class AppointmentFragment extends Fragment {
 
         binding.calendarView.setMinDate(System.currentTimeMillis() - 1000);
         binding.calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+            selectedDate = year + "/" + (month + 1) + "/" + dayOfMonth;
             getAllTakenAppointments(selectedDate, getAllAppointments());
         });
 
@@ -133,7 +133,6 @@ public class AppointmentFragment extends Fragment {
                         tableRow.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                         tableRow.setGravity(Gravity.CENTER);
                         i = 0;
-
                     }
                     Button button = new Button(getActivity());
                     button.setText(hour.toString());
@@ -236,12 +235,10 @@ public class AppointmentFragment extends Fragment {
                     String hour = hourSnapshot.getKey();
                     for(Hour h : allHours) {
                         if(h.toString().equals(hour)) {
-                            System.out.println("Ajout de " + h.toString());
                             takenHours.add(h);
                         }
                     }
                 }
-                System.out.println("taken hours : " + takenHours);
             }
 
             @Override
