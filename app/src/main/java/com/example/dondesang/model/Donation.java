@@ -1,35 +1,38 @@
 package com.example.dondesang.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Donation {
-    private Appointment appointment;
-    private DonationType type;
+    private String date;
+    private String type;
 
     public Donation() {
     }
 
-    public Donation(Appointment appointment, DonationType type) {
-        this.appointment = appointment;
+    public Donation(String date, String type) {
+        this.date = date;
         this.type = type;
     }
 
-    public Donation(Appointment appointment, String type) {
-        this.appointment = appointment;
-        this.type = DonationType.valueOf(type);
+    public Donation(String date, DonationType type) {
+        this.date = date;
+        this.type = type.getName();
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public String getDate() {
+        return date;
     }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public DonationType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(DonationType type) {
+    public void setType(String type) {
         this.type = type;
     }
 }

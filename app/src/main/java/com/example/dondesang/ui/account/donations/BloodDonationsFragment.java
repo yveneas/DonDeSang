@@ -1,5 +1,6 @@
 package com.example.dondesang.ui.account.donations;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+
 public class BloodDonationsFragment extends Fragment {
     private FragmentBloodDonationsBinding binding;
     private User user;
@@ -40,6 +43,45 @@ public class BloodDonationsFragment extends Fragment {
         user = activity.getUser();
         listeners();
         return binding.getRoot();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+        userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+                if (user != null && user.getLastDonation() != null) {
+                    if(!user.isDonationPossible(DonationType.BLOOD)) {
+                        binding.bloodAppointmentButton.setEnabled(false);
+                        binding.bloodAppointmentButton.setBackground(getResources().getDrawable(R.drawable.back_button_background));
+                    }
+                    if(!user.isDonationPossible(DonationType.PLASMA)) {
+                        binding.plasmaAppointmentButton.setEnabled(false);
+                        binding.plasmaAppointmentButton.setBackground(getResources().getDrawable(R.drawable.back_button_background));
+                    }
+                    if(!user.isDonationPossible(DonationType.PLAQUETTES)) {
+                        binding.plaquetteAppointmentButton.setEnabled(false);
+                        binding.plaquetteAppointmentButton.setBackground(getResources().getDrawable(R.drawable.back_button_background));
+                    }
+                }
+                binding.bloodNextDonation.setText("Prochain  don :\n" + new SimpleDateFormat("dd/MM/yyyy").format(user.getNextDonationDate(DonationType.BLOOD)));
+                binding.plasmaNextDonation.setText("Prochain  don :\n" + new SimpleDateFormat("dd/MM/yyyy").format(user.getNextDonationDate(DonationType.PLASMA)));
+                binding.plaquetteNextDonation.setText("Prochain  don :\n" + new SimpleDateFormat("dd/MM/yyyy").format(user.getNextDonationDate(DonationType.PLAQUETTES)));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Erreur lors de la récupération des données", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        UserActivity activity = (UserActivity) getActivity();
+        user = activity.getUser();
     }
 
     @Override

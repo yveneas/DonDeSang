@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentAppointmentMainBinding;
 import com.example.dondesang.model.Appointment;
+import com.example.dondesang.model.Donation;
 import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.Hour;
 import com.example.dondesang.model.User;
@@ -165,7 +166,10 @@ public class AppointmentFragment extends Fragment {
                                                         .child(hour.toString()).setValue(appointment.getUser());
                                                 Toast.makeText(getActivity(),
                                                         "Rendez-vous pris avec succès", Toast.LENGTH_LONG).show();
-
+                                                user.setLastDonation(new Donation(appointment.getDate(), type));
+                                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+                                                //Voir si on peut mettre des objets en attributs de user
+                                                userRef.child(mAuth.getCurrentUser().getUid()).setValue(user);
                                                 dialog.dismiss();
                                                 takenHours.add(hour);
                                                 getActivity().finish();

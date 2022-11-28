@@ -1,8 +1,8 @@
 package com.example.dondesang.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
 
 public class User {
     private String civility;
@@ -24,7 +24,10 @@ public class User {
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.birthPlace = birthPlace;
+        this.lastDonation = null;
     }
+
+
 
     public String getCivility() {
         return civility;
@@ -94,7 +97,12 @@ public class User {
         if(lastDonation == null) {
             return true;
         }
-        Date date = lastDonation.getAppointment().convertToDate();
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(lastDonation.getDate().replace("-", "/"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         if(date != null) {
             if(type == DonationType.BLOOD) {
                 return date.getTime() + 56L * 24 * 60 * 60 * 1000 < new Date().getTime();
@@ -105,5 +113,43 @@ public class User {
             }
         }
         return false;
+    }
+
+    public Date getNextDonationDate(DonationType type) {
+        if(lastDonation == null) {
+            return new Date();
+        }
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(lastDonation.getDate().replace("-", "/"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(date != null) {
+            Date nextDate = null;
+            if(type == DonationType.BLOOD) {
+                nextDate = new Date(date.getTime() + 56L * 24 * 60 * 60 * 1000);
+                if(nextDate.getTime() < new Date().getTime()) {
+                    return new Date();
+                } else {
+                    return nextDate;
+                }
+            } else if(type == DonationType.PLASMA) {
+                nextDate = new Date(date.getTime() + 28L * 24 * 60 * 60 * 1000);
+                if(nextDate.getTime() < new Date().getTime()) {
+                    return new Date();
+                } else {
+                    return nextDate;
+                }
+            } else if(type == DonationType.PLAQUETTES) {
+                nextDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+                if(nextDate.getTime() < new Date().getTime()) {
+                    return new Date();
+                } else {
+                    return nextDate;
+                }
+            }
+        }
+        return null;
     }
 }

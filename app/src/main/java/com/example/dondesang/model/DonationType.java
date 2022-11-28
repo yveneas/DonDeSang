@@ -7,6 +7,10 @@ public enum DonationType {
 
     private String name;
 
+    DonationType(){
+
+    }
+
     DonationType(String name) {
         this.name = name;
     }
