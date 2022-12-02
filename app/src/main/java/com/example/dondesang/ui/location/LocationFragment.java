@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,6 +65,12 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         bottomSheet = binding.getRoot().findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        bottomSheet.findViewById(R.id.closeSheetButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
 
         donationCenterDAO = new DonationCenterDAO();
         donationCenters = donationCenterDAO.getAllDonationCenter();
@@ -171,6 +178,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                             if(donationType == DonationType.BLOOD) {
                                 LinearLayout linearLayout1 = new LinearLayout(getContext());
                                 linearLayout1.setOrientation(LinearLayout.VERTICAL);
+
                                 ImageView imageView = new ImageView(getContext());
                                 imageView.setImageResource(R.drawable.blood_icon);
 
@@ -180,11 +188,13 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
                                 linearLayout1.addView(imageView);
                                 linearLayout1.addView(textView);
+                                linearLayout1.setPadding(0, 0, 20, 0);
                                 linearLayout.addView(linearLayout1);
                             }
                             if(donationType == DonationType.PLASMA) {
                                 LinearLayout linearLayout1 = new LinearLayout(getContext());
                                 linearLayout1.setOrientation(LinearLayout.VERTICAL);
+
                                 ImageView imageView = new ImageView(getContext());
                                 imageView.setImageResource(R.drawable.plasma_icon);
 
@@ -194,11 +204,13 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
                                 linearLayout1.addView(imageView);
                                 linearLayout1.addView(textView);
+                                linearLayout1.setPadding(0, 0, 20, 0);
                                 linearLayout.addView(linearLayout1);
                             }
                             if(donationType == DonationType.PLAQUETTES) {
                                 LinearLayout linearLayout1 = new LinearLayout(getContext());
                                 linearLayout1.setOrientation(LinearLayout.VERTICAL);
+
                                 ImageView imageView = new ImageView(getContext());
                                 imageView.setImageResource(R.drawable.plaquette_icon);
 
@@ -208,6 +220,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
                                 linearLayout1.addView(imageView);
                                 linearLayout1.addView(textView);
+                                linearLayout1.setPadding(0, 0, 20, 0);
                                 linearLayout.addView(linearLayout1);
                             }
 

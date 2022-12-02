@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="350dp"
     android:background="@color/white"
     android:orientation="vertical"
     app:behavior_hideable="true"
@@ -28,31 +28,35 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@+id/closeSheetButton" />
 
         <LinearLayout
             android:id="@+id/availableDonationsLayout"
             android:layout_width="408dp"
             android:layout_height="0dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placeText"/>
+            app:layout_constraintTop_toBottomOf="@+id/placeText" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="176dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_background"
-            android:text="Button"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/make_appointment"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/availableDonationsLayout" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/closeSheetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

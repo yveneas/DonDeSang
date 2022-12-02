@@ -72,18 +72,20 @@ public class AccountInformationsFragment extends Fragment {
                 }
             });
         }
+        if(user != null) {
 
-        binding.civilityText.setEnabled(false);
-        binding.lastnameText.setEnabled(false);
-        binding.nameText.setEnabled(false);
-        binding.birthDateText.setEnabled(false);
-        binding.birthPlaceText.setEnabled(false);
-        binding.nameText.setText(user.getName());
-        binding.lastnameText.setText(user.getLastName());
-        binding.civilityText.setSelection(spinnerArray.indexOf(user.getCivility()));
-        binding.birthDateText.setText(user.getBirthDate());
-        binding.birthPlaceText.setText(user.getBirthPlace());
-        binding.modifyButton.setText("Modifier");
+            binding.civilityText.setEnabled(false);
+            binding.lastnameText.setEnabled(false);
+            binding.nameText.setEnabled(false);
+            binding.birthDateText.setEnabled(false);
+            binding.birthPlaceText.setEnabled(false);
+            binding.nameText.setText(user.getName());
+            binding.lastnameText.setText(user.getLastName());
+            binding.civilityText.setSelection(spinnerArray.indexOf(user.getCivility()));
+            binding.birthDateText.setText(user.getBirthDate());
+            binding.birthPlaceText.setText(user.getBirthPlace());
+            binding.modifyButton.setText("Modifier");
+        }
 
         if(binding.nameText.getText().length() == 0) {
             binding.modifyButton.setText("Enregistrer");

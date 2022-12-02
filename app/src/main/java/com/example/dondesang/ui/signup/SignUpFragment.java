@@ -58,6 +58,7 @@ public class SignUpFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
+                                        System.out.println("Inscription réussie");
                                         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.replace(R.id.fragment_activity_connection, new AccountInformationsFragment());
