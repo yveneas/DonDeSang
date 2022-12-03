@@ -14,7 +14,6 @@ public class DonationCenter {
         this.name = name;
         this.address = address;
         this.donationTypes = donationTypes;
-        System.out.println("donationTypes " + donationTypes);
     }
 
     public String getName() {

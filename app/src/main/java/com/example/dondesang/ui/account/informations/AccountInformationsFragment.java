@@ -41,7 +41,7 @@ public class AccountInformationsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAccountInformationsBinding.inflate(inflater, container, false);
-        listeners();
+        //listeners();
         List<String> spinnerArray =  new ArrayList<>();
         spinnerArray.add(0, "");
         spinnerArray.add("Monsieur");
@@ -57,21 +57,6 @@ public class AccountInformationsFragment extends Fragment {
         UserActivity activity = (UserActivity) getActivity();
         user = activity.getUser();
 
-        if(user == null) {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-            userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    user = snapshot.getValue(User.class);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(), "Erreur lors de la récupération des données", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
         if(user != null) {
 
             binding.civilityText.setEnabled(false);
@@ -95,7 +80,7 @@ public class AccountInformationsFragment extends Fragment {
             binding.birthDateText.setEnabled(true);
             binding.birthPlaceText.setEnabled(true);
         }
-
+        listeners();
         return binding.getRoot();
     }
 

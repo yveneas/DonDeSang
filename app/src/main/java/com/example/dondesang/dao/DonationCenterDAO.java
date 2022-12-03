@@ -25,18 +25,14 @@ public class DonationCenterDAO {
         List<DonationCenter> donationCenters = new ArrayList<>();
         if(auth != null) {
             DatabaseReference donationCenterRef = FirebaseDatabase.getInstance().getReference("donation_center");
-            donationCenterRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot donationCenter : snapshot.getChildren()) {
-                        donationCenters.add(donationCenter.getValue(DonationCenter.class));
+            donationCenterRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DataSnapshot snapshot = task.getResult();
+                    if (snapshot.exists()) {
+                        for(DataSnapshot donationCenter : snapshot.getChildren()) {
+                            donationCenters.add(donationCenter.getValue(DonationCenter.class));
+                        }
                     }
-                    System.out.println("size " + donationCenters.size());
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
         }

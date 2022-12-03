@@ -4,6 +4,7 @@ package com.example.dondesang.ui.location;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,9 +28,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.dondesang.AppointmentActivity;
 import com.example.dondesang.dao.DonationCenterDAO;
 import com.example.dondesang.model.DonationCenter;
 import com.example.dondesang.model.DonationType;
+import com.example.dondesang.model.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,7 +45,13 @@ import com.example.dondesang.R;
 import com.example.dondesang.UserActivity;
 import com.example.dondesang.databinding.FragmentLocationBinding;
 import com.example.dondesang.ui.account.menu.MenuFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,14 +63,19 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private FragmentLocationBinding binding;
     private List<DonationCenter> donationCenters;
+    private DonationCenterDAO donationCenterDAO;
     private BottomSheetBehavior bottomSheetBehavior;
     private ConstraintLayout bottomSheet;
-    private DonationCenterDAO donationCenterDAO;
+    private FirebaseAuth mAuth;
+    private User user;
+    private String type;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentLocationBinding.inflate(inflater, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
 
         bottomSheet = binding.getRoot().findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -73,19 +88,57 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         });
 
         donationCenterDAO = new DonationCenterDAO();
-        donationCenters = donationCenterDAO.getAllDonationCenter();
+        donationCenters = new ArrayList<>();
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         listener();
-
+        if(mAuth != null) {
+            DatabaseReference donationCenterRef = FirebaseDatabase.getInstance().getReference("donation_center");
+            donationCenterRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DataSnapshot snapshot = task.getResult();
+                    if (snapshot.exists()) {
+                        for(DataSnapshot donationCenter : snapshot.getChildren()) {
+                            donationCenters.add(donationCenter.getValue(DonationCenter.class));
+                        }
+                        for(DonationCenter donationCenter : donationCenters) {
+                            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+                            try {
+                                List<Address> list = geocoder.getFromLocationName(donationCenter.getAddress(), 1);
+                                if(list.size() > 0) {
+                                    Address address = list.get(0);
+                                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                                    Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
+                                    marker.setTitle(donationCenter.getName());
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+        }
         return binding.getRoot();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null) {
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+            userRef.child(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DataSnapshot snapshot = task.getResult();
+                    if (snapshot.exists()) {
+                        user = snapshot.getValue(User.class);
+                    }
+                }
+            });
+        }
         /*
         List<DonationType> donationTypes = new ArrayList<>();
         donationTypes.add(DonationType.BLOOD);
@@ -113,20 +166,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         donationCenter2 = new DonationCenter("PLASMAVIE Trois-Rivières", "4767 boulevard Gene-H. Kruger  Trois-Rivières, Qc G9A 4N4", donationTypes);
         donationCenterDAO.addDonationCenter(donationCenter2);*/
 
-        for(DonationCenter donationCenter : donationCenters) {
-            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-            try {
-                List<Address> list = geocoder.getFromLocationName(donationCenter.getAddress(), 1);
-                if(list.size() > 0) {
-                    Address address = list.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
-                    marker.setTitle(donationCenter.getName());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     @Override
@@ -172,59 +212,107 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                         TextView text = bottomSheet.findViewById(R.id.placeText);
                         text.setText(donationCenter.getName());
 
-                        LinearLayout linearLayout = bottomSheet.findViewById(R.id.availableDonationsLayout);
-                        linearLayout.removeAllViews();
+
                         for(DonationType donationType : donationCenter.getDonationTypes()) {
+                            LinearLayout bloodLayout = bottomSheet.findViewById(R.id.bloodDonationLayout);
+                            LinearLayout plasmaLayout = bottomSheet.findViewById(R.id.plasmaDonationLayout);
+                            LinearLayout plaquetteLayout = bottomSheet.findViewById(R.id.plaquettesDonationLayout);
                             if(donationType == DonationType.BLOOD) {
-                                LinearLayout linearLayout1 = new LinearLayout(getContext());
-                                linearLayout1.setOrientation(LinearLayout.VERTICAL);
 
-                                ImageView imageView = new ImageView(getContext());
-                                imageView.setImageResource(R.drawable.blood_icon);
+                                bloodLayout.setVisibility(View.VISIBLE);
 
-                                TextView textView = new TextView(getContext());
-                                textView.setText("Don de sang");
-                                textView.setTextColor(getResources().getColor(R.color.main_color));
+                                ImageButton bloodButton = bloodLayout.findViewById(R.id.bloodDonationButton);
+                                bloodButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        bloodLayout.setBackground(getResources().getDrawable(R.drawable.calendar_background));
+                                        plasmaLayout.setBackground(null);
+                                        plaquetteLayout.setBackground(null);
+                                        type = "sang";
+                                        Button appointmentButton = bottomSheet.findViewById(R.id.appointmentButton);
+                                        if(user.isDonationPossible(DonationType.BLOOD)) {
+                                            appointmentButton.setEnabled(true);
+                                        } else {
+                                            appointmentButton.setEnabled(false);
+                                        }
 
-                                linearLayout1.addView(imageView);
-                                linearLayout1.addView(textView);
-                                linearLayout1.setPadding(0, 0, 20, 0);
-                                linearLayout.addView(linearLayout1);
+                                    }
+                                });
+
                             }
                             if(donationType == DonationType.PLASMA) {
-                                LinearLayout linearLayout1 = new LinearLayout(getContext());
-                                linearLayout1.setOrientation(LinearLayout.VERTICAL);
 
-                                ImageView imageView = new ImageView(getContext());
-                                imageView.setImageResource(R.drawable.plasma_icon);
+                                plasmaLayout.setVisibility(View.VISIBLE);
 
-                                TextView textView = new TextView(getContext());
-                                textView.setText("Don de plasma");
-                                textView.setTextColor(getResources().getColor(R.color.main_color));
+                                ImageButton plasmaButton = plasmaLayout.findViewById(R.id.plasmaDonationButton);
+                                plasmaButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        plasmaLayout.setBackground(getResources().getDrawable(R.drawable.calendar_background));
+                                        bloodLayout.setBackground(null);
+                                        plaquetteLayout.setBackground(null);
+                                        type = "plasma";
+                                        Button appointmentButton = bottomSheet.findViewById(R.id.appointmentButton);
+                                        if(user.isDonationPossible(DonationType.PLASMA)) {
+                                            appointmentButton.setEnabled(true);
+                                        } else {
+                                            appointmentButton.setEnabled(false);
+                                        }
 
-                                linearLayout1.addView(imageView);
-                                linearLayout1.addView(textView);
-                                linearLayout1.setPadding(0, 0, 20, 0);
-                                linearLayout.addView(linearLayout1);
+                                    }
+                                });
                             }
                             if(donationType == DonationType.PLAQUETTES) {
-                                LinearLayout linearLayout1 = new LinearLayout(getContext());
-                                linearLayout1.setOrientation(LinearLayout.VERTICAL);
 
-                                ImageView imageView = new ImageView(getContext());
-                                imageView.setImageResource(R.drawable.plaquette_icon);
+                                plaquetteLayout.setVisibility(View.VISIBLE);
 
-                                TextView textView = new TextView(getContext());
-                                textView.setText("Don de plaquettes");
-                                textView.setTextColor(getResources().getColor(R.color.main_color));
+                                ImageButton plaquetteButton = plaquetteLayout.findViewById(R.id.plaquetteDonationButton);
+                                plaquetteButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        plaquetteLayout.setBackground(getResources().getDrawable(R.drawable.calendar_background));
+                                        plasmaLayout.setBackground(null);
+                                        bloodLayout.setBackground(null);
+                                        type = "plaquettes";
+                                        Button appointmentButton = bottomSheet.findViewById(R.id.appointmentButton);
+                                        if(user.isDonationPossible(DonationType.PLAQUETTES)) {
+                                            appointmentButton.setEnabled(true);
+                                        } else {
+                                            appointmentButton.setEnabled(false);
+                                        }
 
-                                linearLayout1.addView(imageView);
-                                linearLayout1.addView(textView);
-                                linearLayout1.setPadding(0, 0, 20, 0);
-                                linearLayout.addView(linearLayout1);
+                                    }
+                                });
                             }
 
                         }
+
+                        Button appointmentButton = bottomSheet.findViewById(R.id.appointmentButton);
+                        appointmentButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                DatabaseReference centerRef = FirebaseDatabase.getInstance()
+                                        .getReference("donation_center");
+                                centerRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if(task.isSuccessful()) {
+                                            for(DataSnapshot snapshot : task.getResult().getChildren()) {
+                                                DonationCenter donationCenter1 = snapshot.getValue(DonationCenter.class);
+                                                if(donationCenter1.getName().equals(donationCenter.getName())) {
+                                                    Intent intent = new Intent(getContext(), AppointmentActivity.class);
+                                                    System.out.println("TEST " + snapshot.getKey());
+                                                    intent.putExtra("centerId", snapshot.getKey());
+                                                    intent.putExtra("type", type);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        //Faire en sorte de ne pas pouvoir prendre de rdv quand le delai n'est pas dépassé
                         //Toast.makeText(getContext(), donationCenter.getName() + " : " + donationCenter.getAddress(), Toast.LENGTH_SHORT).show();
                     }
                 }

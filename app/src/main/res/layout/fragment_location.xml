@@ -29,6 +29,7 @@
             android:background="@drawable/search_background"
             android:hint="@string/search_location"
             android:paddingStart="52dp"
+            android:textColor="@color/main_color"
             android:textColorHint="@color/main_color"
             app:layout_constraintEnd_toEndOf="@id/map"
             app:layout_constraintStart_toStartOf="@id/map"

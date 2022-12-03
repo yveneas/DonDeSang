@@ -50,54 +50,6 @@ public class DonationsInfosFragment extends Fragment {
         user = activity.getUser();
         donations = activity.getDonations();
 
-        String typeDonation = getArguments().getString("type");
-        if (typeDonation != null) {
-            if (typeDonation.equals("blood")) {
-                binding.donationInfosTitle.setText("Donations de sang");
-            } else if (typeDonation.equals("plasma")) {
-                binding.donationInfosTitle.setText("Donations de plasma");
-            } else if (typeDonation.equals("plaquettes")) {
-                binding.donationInfosTitle.setText("Donations de plaquettes");
-            }
-        }
-
-
-
-        for(Donation donation : donations) {
-            if(donation.getType().equals(typeDonation)) {
-                View view = getLayoutInflater().inflate(R.layout.single_donation, null);
-                view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                TextView text = view.findViewById(R.id.donationTypeText);
-                if(donation.getType().equals("blood")) {
-                    text.setText("Sang");
-                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.blood);
-                    img.setBounds(0, 0, 68, 80);
-                    text.setCompoundDrawables(img, null, null, null);
-                } else if(donation.getType().equals("plasma")) {
-                    text.setText("Plasma");
-                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.plasma);
-                    img.setBounds(0, 0, 68, 80);
-                    text.setCompoundDrawables(img, null, null, null);
-                } else if(donation.getType().equals("plaquettes")) {
-                    text.setText("Plaquettes");
-                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.plaquette);
-                    img.setBounds(0, 0, 68, 80);
-                    text.setCompoundDrawables(img, null, null, null);
-                }
-                text = view.findViewById(R.id.donationDateText);
-                String date = "";
-                try {
-                    Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(donation.getDate().replace("-", "/"));
-                    date = new SimpleDateFormat("dd/MM/yyyy").format(date1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                text.setText(date);
-                binding.donationsLayout.addView(view);
-            }
-
-        }
-
         listeners();
         return binding.getRoot();
     }
@@ -108,9 +60,58 @@ public class DonationsInfosFragment extends Fragment {
         binding = null;
     }
 
+    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onStart() {
         super.onStart();
+        String typeDonation = getArguments().getString("type");
+        if (typeDonation != null) {
+            if (typeDonation.equals("blood")) {
+                binding.donationInfosTitle.setText("Donations de sang");
+            } else if (typeDonation.equals("plasma")) {
+                binding.donationInfosTitle.setText("Donations de plasma");
+            } else if (typeDonation.equals("plaquettes")) {
+                binding.donationInfosTitle.setText("Donations de plaquettes");
+            }
+        }
+        for(Donation donation : donations) {
+            if(donation.getType().equals(typeDonation)) {
+                View view = getLayoutInflater().inflate(R.layout.single_donation, null);
+                view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                TextView text = view.findViewById(R.id.donationTypeText);
+                if(donation.getType().equals("blood")) {
+                    text.setText("Sang");
+                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.blood);
+                    assert img != null;
+                    img.setBounds(0, 0, 68, 80);
+                    text.setCompoundDrawables(img, null, null, null);
+                } else if(donation.getType().equals("plasma")) {
+                    text.setText("Plasma");
+                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.plasma);
+                    assert img != null;
+                    img.setBounds(0, 0, 68, 80);
+                    text.setCompoundDrawables(img, null, null, null);
+                } else if(donation.getType().equals("plaquettes")) {
+                    text.setText("Plaquettes");
+                    Drawable img = ContextCompat.getDrawable(getContext(), R.drawable.plaquette);
+                    assert img != null;
+                    img.setBounds(0, 0, 68, 80);
+                    text.setCompoundDrawables(img, null, null, null);
+                }
+                text = view.findViewById(R.id.donationDateText);
+                String date = "";
+                try {
+                    Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(donation.getDate().replace("-", "/"));
+                    assert date1 != null;
+                    date = new SimpleDateFormat("dd/MM/yyyy").format(date1);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                text.setText(date);
+                binding.donationsLayout.addView(view);
+            }
+
+        }
     }
 
     public void listeners() {
