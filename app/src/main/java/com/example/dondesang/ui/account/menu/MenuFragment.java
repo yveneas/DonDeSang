@@ -33,7 +33,7 @@ public class MenuFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAccountMenuBinding.inflate(inflater, container, false);
-        listeners();
+
         UserActivity activity = (UserActivity) getActivity();
         user = activity.getUser();
         if(user != null) {
@@ -59,6 +59,7 @@ public class MenuFragment extends Fragment {
 
             }
         });
+        listeners();
         return binding.getRoot();
     }
 

@@ -39,14 +39,90 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placeText" />
+            app:layout_constraintTop_toBottomOf="@+id/placeText" >
+
+            <LinearLayout
+                android:id="@+id/bloodDonationLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/bloodDonationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:srcCompat="@drawable/blood_icon" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/blood_donation"
+                    android:textColor="@color/main_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/plasmaDonationLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/plasmaDonationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:srcCompat="@drawable/plasma_icon" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/plasma_donation"
+                    android:textColor="@color/main_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/plaquettesDonationLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/plaquetteDonationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:srcCompat="@drawable/plaquette_icon" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/plaquette_donation"
+                    android:textColor="@color/main_color" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/appointmentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_background"
+            android:enabled="false"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/make_appointment"

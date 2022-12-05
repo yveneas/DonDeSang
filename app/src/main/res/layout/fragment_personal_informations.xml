@@ -13,25 +13,52 @@
         android:text="@string/donnor_infos"
         android:textColor="@color/main_color"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/backButton"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toTopOf="@+id/backButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/text_background"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mail"
+                android:textColor="@color/main_color"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/mailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_background2"
+                android:enabled="false"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/main_color"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,11 +165,11 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_background2"
                 android:enabled="false"
+                android:inputType="date"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"
-                android:inputType="date"
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
@@ -196,7 +223,7 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

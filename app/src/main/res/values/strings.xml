@@ -39,7 +39,7 @@
     <string name="healed_people">Vos dons ont soignés X personnes \nMerci !</string>
     <string name="blood_donation">Don de sang</string>
     <string name="plasma_donation">Don de plasma</string>
-    <string name="plaquette_donation">Don de plaquette</string>
+    <string name="plaquette_donation">Don de plaquettes</string>
     <string name="next_donation">Prochain don :\n</string>
     <string name="make_appointment">Prendre rendez-vous</string>
     <string name="blood">Sang</string>
@@ -60,4 +60,5 @@
     <string name="date">Date</string>
     <string name="envoyer">Envoyer</string>
     <string name="write_message">Ecrivez votre message</string>
+    <string name="mail">Mail</string>
 </resources>

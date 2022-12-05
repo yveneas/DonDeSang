@@ -105,9 +105,10 @@ public class BloodDonationsFragment extends Fragment {
             binding.bloodAppointmentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), AppointmentActivity.class);
+                    getActivity().finish();
+                    /*Intent intent = new Intent(getActivity(), AppointmentActivity.class);
                     intent.putExtra("type", "sang");
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
         } else {
@@ -118,9 +119,10 @@ public class BloodDonationsFragment extends Fragment {
             binding.plasmaAppointmentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), AppointmentActivity.class);
-                    intent.putExtra("type", "plasma");
-                    startActivity(intent);
+                    getActivity().finish();
+                    /*Intent intent = new Intent(getActivity(), AppointmentActivity.class);
+                    intent.putExtra("type", "sang");
+                    startActivity(intent);*/
                 }
             });
         } else {
@@ -131,9 +133,10 @@ public class BloodDonationsFragment extends Fragment {
             binding.plaquetteAppointmentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), AppointmentActivity.class);
-                    intent.putExtra("type", "plaquettes");
-                    startActivity(intent);
+                    getActivity().finish();
+                    /*Intent intent = new Intent(getActivity(), AppointmentActivity.class);
+                    intent.putExtra("type", "sang");
+                    startActivity(intent);*/
                 }
             });
         } else {

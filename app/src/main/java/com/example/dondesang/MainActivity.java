@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private FirebaseAuth mAuth;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-
         listeners();
+        if(mAuth.getCurrentUser() == null) {
+            Intent intent = new Intent(this, UserActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(navController.getCurrentDestination().getId() != R.id.navigation_location) {
+            for(int i = 0; i < navController.getBackQueue().getSize(); i++) {
+                navController.popBackStack();
+            }
+            navController.getBackQueue().clear();
+            navController.navigate(R.id.navigation_location);
+
+
+        }
+
     }
 
     private void listeners() {

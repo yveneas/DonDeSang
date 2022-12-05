@@ -17,7 +17,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.dondesang.AppointmentActivity;
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentAppointmentMainBinding;
 import com.example.dondesang.model.Appointment;
@@ -25,6 +28,8 @@ import com.example.dondesang.model.Donation;
 import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.Hour;
 import com.example.dondesang.model.User;
+import com.example.dondesang.ui.account.donations.BloodDonationsFragment;
+import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,12 +45,18 @@ public class AppointmentFragment extends Fragment {
     private FragmentAppointmentMainBinding binding;
     private String selectedDate;
     private List<Hour> takenHours;
+    private String centerId;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAppointmentMainBinding.inflate(inflater, container, false);
         takenHours = new ArrayList<>();
+        AppointmentActivity activity = (AppointmentActivity) getActivity();
+        centerId = ((AppointmentActivity) getActivity()).getCenterId();
+        if(centerId != null) {
+            Toast.makeText(getContext(), centerId, Toast.LENGTH_SHORT).show();
+        }
         List<String> spinnerArray =  new ArrayList<>();
         spinnerArray.add("Don de sang");
         spinnerArray.add("Don de plasma");
@@ -56,7 +67,7 @@ public class AppointmentFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         Spinner spinner = (Spinner) binding.getRoot().findViewById(R.id.donationsSpinner);
         spinner.setAdapter(adapter);
-        spinner.setSelection(1);
+        spinner.setSelection(0);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         if(selectedDate == null) {
@@ -74,12 +85,14 @@ public class AppointmentFragment extends Fragment {
         Bundle bundle = requireActivity().getIntent().getExtras();
         if(bundle != null) {
             String type = bundle.getString("type");
-            if(type.equals("sang")) {
+            if(type != null && type.equals("sang")) {
                 spinner.setSelection(0);
-            } else if(type.equals("plasma")) {
+            } else if(type != null && type.equals("plasma")) {
                 spinner.setSelection(1);
-            } else if(type.equals("plaquettes")) {
+            } else if(type != null && type.equals("plaquettes")) {
                 spinner.setSelection(2);
+            } else {
+                spinner.setSelection(0);
             }
         }
         return binding.getRoot();
@@ -160,14 +173,13 @@ public class AppointmentFragment extends Fragment {
                                                 }
                                                 Appointment appointment = new Appointment(selectedDate, hour, user);
                                                 DatabaseReference appointmentRef = FirebaseDatabase.getInstance()
-                                                        .getReference("appointments");
-                                                appointmentRef.child(donationType).child(selectedDate.replace("/", "-"))
+                                                        .getReference("donation_center");
+                                                appointmentRef.child(((AppointmentActivity)getActivity()).getCenterId()).child("appointments").child(donationType).child(selectedDate.replace("/", "-"))
                                                         .child(hour.toString()).setValue(appointment.getUser());
                                                 Toast.makeText(getActivity(),
                                                         "Rendez-vous pris avec succès", Toast.LENGTH_LONG).show();
                                                 user.setLastDonation(new Donation(appointment.getDate(), type));
                                                 DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-                                                //Voir si on peut mettre des objets en attributs de user
                                                 userRef.child(mAuth.getCurrentUser().getUid()).setValue(user);
                                                 dialog.dismiss();
                                                 takenHours.add(hour);
@@ -227,8 +239,9 @@ public class AppointmentFragment extends Fragment {
         } else if(type.getName().equals("Don de plaquettes")) {
             donationType = "plaquettes";
         }
-        DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference("appointments");
-        appointmentRef.child(donationType).child(date.replace("/", "-")).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference("donation_center");
+        appointmentRef.child(((AppointmentActivity)getActivity()).getCenterId()).child("appointments").child(donationType).child(selectedDate.replace("/", "-"))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot hourSnapshot : snapshot.getChildren()) {
