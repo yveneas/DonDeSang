@@ -58,5 +58,7 @@
     <string name="type_donation">Don de ____</string>
     <string name="city">Ville</string>
     <string name="date">Date</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="write_message">Ecrivez votre message</string>
     <string name="mail">Mail</string>
 </resources>
