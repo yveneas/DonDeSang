@@ -61,4 +61,6 @@
     <string name="envoyer">Envoyer</string>
     <string name="write_message">Ecrivez votre message</string>
     <string name="mail">Mail</string>
+    <string name="badge">Mes Badges</string>
+    <string name="emptyslot">Empty Slot</string>
 </resources>
