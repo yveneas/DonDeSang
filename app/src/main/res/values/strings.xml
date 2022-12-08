@@ -63,4 +63,5 @@
     <string name="mail">Mail</string>
     <string name="badge">Mes Badges</string>
     <string name="emptyslot">Empty Slot</string>
+    <string name="nobadge">Vous n\'avez pas de badge pour le moment !</string>
 </resources>
