@@ -1,7 +1,6 @@
 package com.example.dondesang.ui.account.donations;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.dondesang.AppointmentActivity;
 import com.example.dondesang.R;
 import com.example.dondesang.UserActivity;
 import com.example.dondesang.databinding.FragmentBloodDonationsBinding;
-import com.example.dondesang.model.Appointment;
 import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.User;
 import com.example.dondesang.ui.account.menu.MenuFragment;

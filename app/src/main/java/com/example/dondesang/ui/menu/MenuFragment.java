@@ -18,15 +18,10 @@ public class MenuFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MenuViewModel locationViewModel =
-                new ViewModelProvider(this).get(MenuViewModel.class);
 
         binding = FragmentMenuBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textMenu;
-        locationViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
 
     @Override

@@ -72,6 +72,8 @@
             android:ems="10"
             android:hint="@string/identifiant"
             android:inputType="textPersonName"
+            android:textColor="@color/main_color"
+            android:textColorHint="@color/main_color"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
@@ -94,6 +96,8 @@
             android:ems="10"
             android:hint="@string/title_password"
             android:inputType="textPassword"
+            android:textColor="@color/main_color"
+            android:textColorHint="@color/main_color"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
@@ -115,7 +119,9 @@
             android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/title_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/main_color"
+            android:textColorHint="@color/main_color" />
     </LinearLayout>
 
     <Button

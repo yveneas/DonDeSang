@@ -33,7 +33,6 @@ public class UserDAO {
                         for(DataSnapshot date : type.getChildren()) {
                             for(DataSnapshot hour : date.getChildren()) {
                                 if(hour.getValue(User.class).getId().equals(auth.getCurrentUser().getUid())) {
-                                    System.out.println("Donation found");
                                     donations.add(new Donation(date.getKey(), type.getKey()));
                                 }
                             }

@@ -17,9 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.dondesang.AppointmentActivity;
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentAppointmentMainBinding;
@@ -28,8 +25,6 @@ import com.example.dondesang.model.Donation;
 import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.Hour;
 import com.example.dondesang.model.User;
-import com.example.dondesang.ui.account.donations.BloodDonationsFragment;
-import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,9 +49,7 @@ public class AppointmentFragment extends Fragment {
         takenHours = new ArrayList<>();
         AppointmentActivity activity = (AppointmentActivity) getActivity();
         centerId = ((AppointmentActivity) getActivity()).getCenterId();
-        if(centerId != null) {
-            Toast.makeText(getContext(), centerId, Toast.LENGTH_SHORT).show();
-        }
+
         List<String> spinnerArray =  new ArrayList<>();
         spinnerArray.add("Don de sang");
         spinnerArray.add("Don de plasma");

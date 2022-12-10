@@ -1,8 +1,5 @@
 package com.example.dondesang.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Donation {
     private String date;
     private String type;

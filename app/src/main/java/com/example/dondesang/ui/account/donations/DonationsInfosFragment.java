@@ -21,9 +21,7 @@ import com.example.dondesang.UserActivity;
 import com.example.dondesang.dao.UserDAO;
 import com.example.dondesang.databinding.FragmentDonationsListBinding;
 import com.example.dondesang.model.Donation;
-import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.User;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,15 +1,10 @@
 package com.example.dondesang;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.dondesang.dao.UserDAO;
 import com.example.dondesang.model.User;
-import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;

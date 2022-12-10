@@ -1,35 +1,26 @@
 package com.example.dondesang.ui.location;
 
 
-
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.AppointmentActivity;
+import com.example.dondesang.R;
 import com.example.dondesang.dao.DonationCenterDAO;
+import com.example.dondesang.databinding.FragmentLocationBinding;
 import com.example.dondesang.model.DonationCenter;
 import com.example.dondesang.model.DonationType;
 import com.example.dondesang.model.User;
@@ -40,11 +31,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import com.example.dondesang.R;
-import com.example.dondesang.UserActivity;
-import com.example.dondesang.databinding.FragmentLocationBinding;
-import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;

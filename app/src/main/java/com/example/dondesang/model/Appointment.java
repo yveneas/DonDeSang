@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 public class Appointment {
 

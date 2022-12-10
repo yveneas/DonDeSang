@@ -15,10 +15,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.R;
 import com.example.dondesang.UserActivity;
+import com.example.dondesang.dao.UserDAO;
 import com.example.dondesang.databinding.FragmentLoginBinding;
+import com.example.dondesang.ui.account.informations.AccountInformationsFragment;
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
+import com.example.dondesang.ui.infos.InfosFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginFragment extends Fragment {
 
@@ -27,8 +32,6 @@ public class LoginFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LoginViewModel loginViewModel =
-                new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         listener();
@@ -51,10 +54,22 @@ public class LoginFragment extends Fragment {
                         mAuth.signInWithEmailAndPassword(binding.idTextField.getText().toString(),
                                 binding.passwordTextField.getText().toString()).addOnCompleteListener(getActivity(), task -> {
                             if(task.isSuccessful()) {
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.fragment_activity_connection, new MenuFragment());
-                                fragmentTransaction.commit();
+                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
+                                userRef.child("users").child(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task1 -> {
+                                    if(task1.isSuccessful()) {
+                                        if(task1.getResult().exists()) {
+                                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                            fragmentTransaction.replace(R.id.fragment_activity_connection, new MenuFragment());
+                                            fragmentTransaction.commit();
+                                        } else {
+                                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                            fragmentTransaction.replace(R.id.fragment_activity_connection, new AccountInformationsFragment());
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                                });
                             } else {
                                 Toast.makeText(getActivity(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
                             }

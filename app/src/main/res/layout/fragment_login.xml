@@ -73,6 +73,8 @@
             android:hint="@string/identifiant"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:textColor="@color/main_color"
+            android:textColorHint="@color/main_color"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
@@ -105,6 +107,8 @@
             android:ems="10"
             android:hint="@string/title_password"
             android:inputType="textPassword"
+            android:textColor="@color/main_color"
+            android:textColorHint="@color/main_color"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView

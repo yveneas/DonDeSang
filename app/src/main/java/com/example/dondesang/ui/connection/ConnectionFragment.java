@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentConnectionMainBinding;
@@ -23,8 +22,6 @@ public class ConnectionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ConnectionViewModel connectionViewModel =
-                new ViewModelProvider(this).get(ConnectionViewModel.class);
 
         binding = FragmentConnectionMainBinding.inflate(inflater, container, false);
 

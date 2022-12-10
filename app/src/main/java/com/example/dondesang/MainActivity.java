@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.dondesang.databinding.ActivityMainBinding;
-import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

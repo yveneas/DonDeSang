@@ -23,11 +23,8 @@ import com.example.dondesang.databinding.FragmentAccountInformationsBinding;
 import com.example.dondesang.model.User;
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,7 +53,7 @@ public class AccountInformationsFragment extends Fragment {
 
         UserActivity activity = (UserActivity) getActivity();
         user = activity.getUser();
-
+        binding.backButton.setEnabled(false);
         if(user != null) {
 
             binding.civilityText.setEnabled(false);
@@ -70,6 +67,7 @@ public class AccountInformationsFragment extends Fragment {
             binding.birthDateText.setText(user.getBirthDate());
             binding.birthPlaceText.setText(user.getBirthPlace());
             binding.modifyButton.setText("Modifier");
+            binding.backButton.setEnabled(true);
         }
 
         if(binding.nameText.getText().length() == 0) {
@@ -188,6 +186,7 @@ public class AccountInformationsFragment extends Fragment {
                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     userRef.setValue(user);
+                    binding.backButton.setEnabled(true);
                 } else {
                     Toast.makeText(getContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
                 }

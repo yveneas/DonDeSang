@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-//import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dondesang.R;
 import com.example.dondesang.databinding.FragmentNewsBinding;
@@ -27,14 +26,9 @@ public class NewsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //NewsViewModel newsViewModel =
-                //new ViewModelProvider(this).get(NewsViewModel.class);
 
         binding = FragmentNewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        //final TextView textView = binding.textNews;
-        //newsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         final EditText editText = binding.userNews;
         final Button sendButton = binding.sendButton;

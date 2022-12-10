@@ -6,8 +6,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.PopupMenu;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,12 +17,9 @@ import com.example.dondesang.ui.account.informations.AccountInformationsFragment
 import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
