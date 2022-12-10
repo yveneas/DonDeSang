@@ -6,7 +6,9 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,9 +20,12 @@ import com.example.dondesang.ui.account.menu.MenuFragment;
 import com.example.dondesang.ui.connection.ConnectionFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserActivity extends AppCompatActivity {
@@ -31,6 +36,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        donations = new ArrayList<>();
         setContentView(R.layout.activity_connection);
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
@@ -68,8 +74,30 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        List<Donation> donations = new ArrayList<>();
+        if(mAuth != null && mAuth.getCurrentUser() != null) {
+            DatabaseReference appointmentRef = FirebaseDatabase.getInstance().getReference("appointments");
+            appointmentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot type : snapshot.getChildren()) {
+                        for(DataSnapshot date : type.getChildren()) {
+                            for(DataSnapshot hour : date.getChildren()) {
+                                if(hour.getValue(User.class).getId().equals(mAuth.getCurrentUser().getUid())) {
+                                    donations.add(new Donation(date.getKey(), type.getKey()));
+                                }
+                            }
+                        }
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
+
+        }
     }
 
     @Override

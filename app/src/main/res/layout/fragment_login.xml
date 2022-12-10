@@ -84,7 +84,8 @@
             android:layout_marginBottom="52dp"
             android:text="@string/title_forgot_id"
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/textPassword"
